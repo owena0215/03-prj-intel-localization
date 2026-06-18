@@ -1,8 +1,10 @@
 body {
   margin: 0;
+  min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
-  background: linear-gradient(180deg, #0c1822 0%, #173346 45%, #1a4354 100%);
-  color: #fffaf4;
+  background: #ffffff;
+  color: #0f172a;
+  direction: ltr;
   line-height: 1.5;
 }
 
@@ -11,15 +13,15 @@ body {
   padding: 36px 24px 48px;
   display: flex;
   align-items: flex-end;
-  background:
-    linear-gradient(rgba(7, 14, 20, 0.52), rgba(3, 8, 12, 0.78)),
-    url("img/rubaitul-azad-yYqJKJ0GO64-unsplash.jpg") center/cover no-repeat;
+  background: linear-gradient(180deg, #0071C5 0%, #0059A8 100%);
 }
 
 .hero-content {
   width: min(1100px, 100%);
   margin: 0 auto;
   padding: 0 8px;
+  text-align: left;
+  direction: ltr;
 }
 
 .hero-logo {
@@ -35,16 +37,17 @@ body {
   max-width: 760px;
   font-size: clamp(2.4rem, 7vw, 4.5rem);
   line-height: 1.05;
-  color: #fffaf2;
-  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
+  color: #ffffff;
+  text-shadow: none;
+  font-weight: 700;
 }
 
 .hero p {
   max-width: 700px;
   margin: 0;
   font-size: clamp(1rem, 2vw, 1.15rem);
-  color: #f2f6ff;
-  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
+  color: #dbeafe;
+  text-shadow: none;
 }
 
 section {
@@ -53,6 +56,128 @@ section {
 
 .timeline-shell {
   padding-top: 10px;
+  padding-bottom: 16px;
+}
+
+.feature-card h2 {
+  font-weight: 700;
+}
+
+.feature-card p {
+  color: #475569;
+}
+
+/* Make feature cards visually consistent */
+.feature-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 113, 197, 0.08);
+  min-height: 100%;
+}
+
+@media (min-width: 992px) {
+  .feature-card {
+    min-height: 100%;
+  }
+}
+
+/* Keyboard-accessible focus styles */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  left: 16px;
+  top: 16px;
+  width: auto;
+  height: auto;
+  padding: 8px 12px;
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid rgba(0,0,0,0.08);
+  z-index: 1000;
+}
+
+/* Ensure focus states are visible for interactive controls */
+.form-control:focus {
+  box-shadow: 0 0 0 0.15rem rgba(0,113,197,0.18);
+  border-color: rgba(0,113,197,0.6);
+}
+.btn:focus {
+  box-shadow: 0 0 0 0.25rem rgba(0,113,197,0.15);
+  outline: none;
+}
+
+/* Focus style for timeline cards */
+.timeline-card:focus {
+  outline: 3px solid rgba(0,113,197,0.12);
+  transform: translateY(-6px) scale(1.02);
+}
+
+footer {
+  background: #f8fafc;
+  color: #475569;
+}
+
+footer a {
+  color: #475569;
+}
+
+footer a:hover,
+footer a:focus {
+  color: #0f4d8d;
+  text-decoration: underline;
+}
+
+.custom-accordion {
+  display: grid;
+  gap: 1rem;
+}
+
+.custom-accordion details {
+  border: 1px solid rgba(15, 55, 109, 0.16);
+  background: #f8fafc;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.custom-accordion summary {
+  list-style: none;
+  margin: 0;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #eaf2ff;
+  color: #0f172a;
+  font-weight: 700;
+  border: 0;
+}
+
+.custom-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.custom-accordion summary::after {
+  content: "▼";
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+  color: #0f172a;
+}
+
+.custom-accordion details[open] summary::after {
+  transform: rotate(-180deg);
+}
+
+.custom-accordion .content {
+  padding: 1rem 1.25rem 1.5rem;
+  background: #ffffff;
+  color: #334155;
+  line-height: 1.7;
 }
 
 .timeline {
@@ -60,10 +185,11 @@ section {
   flex-wrap: nowrap;
   gap: 18px;
   overflow-x: auto;
-  padding: 8px 2px 18px;
+  padding: 8px 2px 36px;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
 }
 
 .timeline-card {
@@ -71,25 +197,26 @@ section {
   min-height: 260px;
   padding: 18px;
   border-radius: 18px;
-  background: linear-gradient(180deg, rgba(15, 29, 40, 0.97), rgba(10, 18, 26, 0.97));
-  border: 1px solid rgba(146, 189, 255, 0.18);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
-  color: #edf4ff;
+  background: linear-gradient(180deg, #f8fbff 0%, #edf5ff 100%);
+  border: 1px solid rgba(0, 113, 197, 0.16);
+  box-shadow: 0 10px 24px rgba(15, 55, 109, 0.08);
+  color: #0f172a;
   scroll-snap-align: start;
-  transform: perspective(900px) rotateX(0deg) translateY(0);
-  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+  transform: translateY(0);
+  will-change: transform, box-shadow, border-color;
+  transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
 }
 
 .timeline-card:hover {
-  transform: perspective(900px) rotateX(-2deg) translateY(-6px) scale(1.02);
-  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.38);
-  border-color: rgba(140, 200, 255, 0.35);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 18px 32px rgba(15, 55, 109, 0.16);
+  border-color: rgba(0, 113, 197, 0.35);
 }
 
 .timeline-card h2 {
   margin: 0 0 6px;
   font-size: 1rem;
-  color: #8cc8ff;
+  color: #0f4d8d;
   text-transform: uppercase;
   letter-spacing: 0.18em;
 }
@@ -97,36 +224,45 @@ section {
 .timeline-card h3 {
   margin: 0 0 10px;
   font-size: 1.3rem;
-  color: #ffffff;
+  color: #0f172a;
+  font-weight: 600;
 }
 
 .timeline-card p {
   margin: 0 0 10px;
   font-size: 0.97rem;
+  color: #334155;
 }
 
 .card-extra {
-  color: #d9e7ff;
-  border-top: 1px solid rgba(140, 200, 255, 0.18);
+  color: #475569;
+  border-top: 1px solid rgba(0, 113, 197, 0.18);
   padding-top: 10px;
   opacity: 0;
   max-height: 0;
   overflow: hidden;
-  transition: opacity 0.25s ease, max-height 0.25s ease, transform 0.25s ease;
+  transform: translateY(-4px);
+  visibility: hidden;
+  transition: opacity 0.22s ease, transform 0.22s ease, max-height 0.22s ease;
+  will-change: opacity, transform;
 }
 
 .timeline-card:hover .card-extra {
   opacity: 1;
   max-height: 80px;
-  transform: translateY(-2px);
+  transform: translateY(0);
+  visibility: visible;
 }
 
 .timeline-note {
   text-align: center;
-  color: #dbe8ff;
+  color: #334155;
   font-size: 0.95rem;
   padding: 0 16px 24px;
 }
+
+/* Global heading weights */
+h1,h2,h3 { font-weight: 700; }
 
 @media (max-width: 900px) {
   .timeline {
